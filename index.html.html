@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #d32f2f;
+            overflow: hidden; /* For confetti */
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background: #b71c1c;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        #heart {
+            font-size: 60px;
+            margin: 20px 0;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        #forgivenessResponse {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #d32f2f;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I'm So Sorry babyyy 😔❤️</h1>
+        <p>I messed up, and I regret it. You mean the world to me, and I hate seeing you upset, i really do, pls accept this apology babyyyy.I know im an idiot and i dont derserve you but im trying my best to be the best for you.</p>
+        
+        <div id="heart" title="Click me!">❤️</div>
+        
+        <button id="apologyBtn">Reveal My Promise</button>
+        
+        <div id="hiddenMessage" class="hidden">
+            <h2>I Promise to Do Better</h2>
+            <p>I love you more than words can say. Please forgive me?</p>
+            <p>❤️ Yours always, Short King ❤️</p>
+        </div>
+
+        <button id="forgiveBtn">Will You Forgive Me?</button>
+        <div id="forgivenessResponse" class="hidden"></div>
+    </div>
+
+    <script>
+        // Original apology reveal
+        const btn = document.getElementById("apologyBtn");
+        const hiddenMsg = document.getElementById("hiddenMessage");
+        
+        btn.addEventListener("click", function() {
+            hiddenMsg.classList.remove("hidden");
+            btn.textContent = "I Love You!";
+            document.getElementById("heart").style.animation = "none";
+        });
+
+        // Clickable heart
+        const heart = document.getElementById("heart");
+        heart.addEventListener("click", function() {
+            heart.style.transform = "scale(1.5)";
+            setTimeout(() => { heart.style.transform = "scale(1)"; }, 300);
+        });
+
+        // Forgiveness button
+        const forgiveBtn = document.getElementById("forgiveBtn");
+        const responseDiv = document.getElementById("forgivenessResponse");
+        
+        forgiveBtn.addEventListener("click", function() {
+            responseDiv.classList.remove("hidden");
+            responseDiv.innerHTML = "I forgive you! ❤️";
+            forgiveBtn.textContent = "Thank you baby!";
+            
+            // Create confetti
+            createConfetti();
+        });
+
+        // Confetti function
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.body.appendChild(confetti);
+                
+                // Animate
+                const animation = confetti.animate([
+                    { top: -10 + 'px', opacity: 1 },
+                    { top: 100 + 'vh', opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 3000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+    </script>
+</body>
+</html>
